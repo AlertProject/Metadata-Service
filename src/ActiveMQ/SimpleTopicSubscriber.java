@@ -21,8 +21,8 @@ public class SimpleTopicSubscriber {
         MetadataConstants.c_Topics.add("ALERT.*.CommitNew");
         MetadataConstants.c_Topics.add("ALERT.*.CommitNew.Annotated");
         MetadataConstants.c_Topics.add("ALERT.*.CommentNew.Annotated");
-        MetadataConstants.c_Topics.add("ALERT.*.CompetencyNew");
-        MetadataConstants.c_Topics.add("ALERT.*.CompetencyUpdate");
+//        MetadataConstants.c_Topics.add("ALERT.*.CompetencyNew");
+//        MetadataConstants.c_Topics.add("ALERT.*.CompetencyUpdate");
         MetadataConstants.c_Topics.add("ALERT.*.ForumPostNew");
         MetadataConstants.c_Topics.add("ALERT.*.ForumPostNew.Annotated");
         MetadataConstants.c_Topics.add("ALERT.*.IdentityNew");

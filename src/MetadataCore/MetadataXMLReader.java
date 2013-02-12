@@ -184,20 +184,20 @@ public class MetadataXMLReader {
                 MetadataGlobal.BackupProcedure(dDoc);
                 NewForumPostDataLight(dDoc);
             }
-            if(sEventName.equals(MetadataConstants.c_ET_ALERT_STARDOM_CompetencyNew))   //if event type is new competence event
-            {
-                System.out.println("Event type: New competency event");
-                MetadataConstants.sOutputFolderName = MetadataConstants.c_ET_ALERT_STARDOM_CompetencyNew;
-                MetadataGlobal.BackupProcedure(dDoc);
-                NewUpdateCompetence(dDoc, false);
-            }
-            if(sEventName.equals(MetadataConstants.c_ET_ALERT_STARDOM_CompetencyUpdate))   //if event type is update competence event
-            {
-                System.out.println("Event type: Update competency event");
-                MetadataConstants.sOutputFolderName = MetadataConstants.c_ET_ALERT_STARDOM_CompetencyUpdate;
-                MetadataGlobal.BackupProcedure(dDoc);
-                NewUpdateCompetence(dDoc, true);
-            }
+//            if(sEventName.equals(MetadataConstants.c_ET_ALERT_STARDOM_CompetencyNew))   //if event type is new competence event
+//            {
+//                System.out.println("Event type: New competency event");
+//                MetadataConstants.sOutputFolderName = MetadataConstants.c_ET_ALERT_STARDOM_CompetencyNew;
+//                MetadataGlobal.BackupProcedure(dDoc);
+//                NewUpdateCompetence(dDoc, false);
+//            }
+//            if(sEventName.equals(MetadataConstants.c_ET_ALERT_STARDOM_CompetencyUpdate))   //if event type is update competence event
+//            {
+//                System.out.println("Event type: Update competency event");
+//                MetadataConstants.sOutputFolderName = MetadataConstants.c_ET_ALERT_STARDOM_CompetencyUpdate;
+//                MetadataGlobal.BackupProcedure(dDoc);
+//                NewUpdateCompetence(dDoc, true);
+//            }
             if(sEventName.equals(MetadataConstants.c_ET_ALERT_STARDOM_IdentityNew))   //if event type is new identity event
             {
                 System.out.println("Event type: New identity event");
