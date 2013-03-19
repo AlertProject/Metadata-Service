@@ -75,11 +75,11 @@ public class MetadataGlobal {
     {
         try
         {
-            MetadataConstants.omModel = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM );
+            MetadataConstants.omModel = ModelFactory.createOntologyModel( OntModelSpec.OWL_LITE_MEM );
             MetadataConstants.omModel.read(MetadataConstants.sLocationLoadAlert, "RDF/XML" );
             
             //delete this code when annotation ontology gets integrated
-            MetadataConstants.omAnnotation = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM );
+            MetadataConstants.omAnnotation = ModelFactory.createOntologyModel( OntModelSpec.OWL_LITE_MEM );
             MetadataConstants.omAnnotation.read(MetadataConstants.sLocationLoadAlert.replace("alert.owl", "AnnotationOntology.rdf"), "RDF/XML" );
         }
         catch (Exception e)
