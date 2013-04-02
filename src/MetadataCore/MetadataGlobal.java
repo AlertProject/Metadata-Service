@@ -749,6 +749,7 @@ public class MetadataGlobal {
             {
                 MetadataConstants.bStoreOutputEventsInSeparateFolders = false;
             }
+
             System.out.println("########################## METADATA SERVICE ##########################");
             System.out.println("Config file loaded from location: " + sLocation);
             System.out.println("######################################################################");
