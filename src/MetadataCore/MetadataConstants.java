@@ -53,16 +53,20 @@ public class MetadataConstants {
     public static String c_ET_ALERT_Metadata_ForumPostNew_Updated = "ALERT.Metadata.ForumPostNew.Updated";
     public static String c_ET_ALERT_KEUI_MailNew_Annotated = "ALERT.KEUI.MailNew.Annotated";
     public static String c_ET_ALERT_Metadata_MailNew_Updated = "ALERT.Metadata.MailNew.Updated";
-    public static String c_ET_ALERT_KEUI_WikiPostNew_Annotated = "ALERT.KEUI.WikiPostNew.Annotated";
-    public static String c_ET_ALERT_WikiSensor_WikiPostNew = "ALERT.WikiSensor.WikiPostNew";
+    
+    
     public static String c_ET_ALERT_ForumSensor_ForumPostNew = "ALERT.ForumSensor.ForumPostNew";
     public static String c_ET_ALERT_Metadata_ForumPostNew_Stored = "ALERT.Metadata.ForumPostNew.Stored";
     public static String c_ET_ALERT_MLSensor_MailNew = "ALERT.MLSensor.MailNew";
     public static String c_ET_ALERT_Metadata_MailNew_Stored = "ALERT.Metadata.MailNew.Stored";
     public static String c_ET_ALERT_WikiSensor_ArticleAdded = "ALERT.WikiSensor.ArticleAdded";
     public static String c_ET_ALERT_Metadata_ArticleAdded_Stored = "ALERT.Metadata.ArticleAdded.Stored";
+    public static String c_ET_ALERT_KEUI_ArticleAdded_Annotated = "ALERT.KEUI.ArticleAdded.Annotated";
+    public static String c_ET_ALERT_Metadata_ArticleAdded_Updated = "ALERT.Metadata.ArticleAdded.Updated";
     public static String c_ET_ALERT_WikiSensor_ArticleModified = "ALERT.WikiSensor.ArticleModified";
     public static String c_ET_ALERT_Metadata_ArticleModified_Stored = "ALERT.Metadata.ArticleModified.Stored";
+    public static String c_ET_ALERT_KEUI_ArticleModified_Annotated = "ALERT.KEUI.ArticleModified.Annotated";
+    public static String c_ET_ALERT_Metadata_ArticleModified_Updated = "ALERT.Metadata.ArticleModified.Updated";
     public static String c_ET_ALERT_WikiSensor_ArticleDeleted = "ALERT.WikiSensor.ArticleDeleted";
     public static String c_ET_ALERT_Metadata_ArticleDeleted_Stored = "ALERT.Metadata.ArticleDeleted.Stored";
     public static String c_ET_ALERT_STARDOM_CompetencyNew = "ALERT.STARDOM.CompetencyNew";
@@ -241,12 +245,16 @@ public class MetadataConstants {
     public static String c_XMLE_commentTextAnnotated = "commentTextAnnotated";
     public static String c_XMLE_commitMessageLogAnnotated = "commitMessageLogAnnotated";
     public static String c_XMLE_subjectAnnotated = "subjectAnnotated";
-    public static String c_XMLE_bodyAnnotated = "bodyAnnotated";
+    public static String c_XMLE_bodyAnnotated = "bodyAnnotated";    
+    public static String c_XMLE_titleAnnotated = "titleAnnotated";
+    public static String c_XMLE_rawTextAnnotated = "rawTextAnnotated";
     public static String c_XMLE_contentAnnotated = "contentAnnotated";
     public static String c_XMLE_issueDescriptionConcepts = "issueDescriptionConcepts";
     public static String c_XMLE_commentTextConcepts = "commentTextConcepts";
     public static String c_XMLE_commitMessageLogConcepts = "commitMessageLogConcepts";
-    public static String c_XMLE_subjectConcepts = "subjectConcepts";
+    public static String c_XMLE_subjectConcepts = "subjectConcepts";    
+    public static String c_XMLE_titleConcepts = "titleConcepts";    
+    public static String c_XMLE_rawTextConcepts = "rawTextConcepts";
     public static String c_XMLE_bodyConcepts = "bodyConcepts";
     public static String c_XMLE_contentConcepts = "contentConcepts";
     public static String c_XMLE_concept = "concept";

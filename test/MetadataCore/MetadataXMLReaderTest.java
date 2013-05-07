@@ -148,12 +148,12 @@ public class MetadataXMLReaderTest {
                 Element eAnnotation = CreateAnnotationStructure(dDoc, 3, sOptions);
                 eEventData.appendChild(eAnnotation);
             }
-            if(sEventName.equals(MetadataConstants.c_ET_ALERT_KEUI_WikiPostNew_Annotated)) //if event type is new wiki annotation
-            {
-                //            annotation element
-                Element eAnnotation = CreateAnnotationStructure(dDoc, 4, sOptions);
-                eEventData.appendChild(eAnnotation);
-            }
+//            if(sEventName.equals(MetadataConstants.c_ET_ALERT_KEUI_WikiPostNew_Annotated)) //if event type is new wiki annotation
+//            {
+//                //            annotation element
+//                Element eAnnotation = CreateAnnotationStructure(dDoc, 4, sOptions);
+//                eEventData.appendChild(eAnnotation);
+//            }
             if(sEventName.equals(MetadataConstants.c_ET_ALERT_KEUI_MailNew_Annotated)) //if event type is new mail annotation
             {
                 //            annotation element

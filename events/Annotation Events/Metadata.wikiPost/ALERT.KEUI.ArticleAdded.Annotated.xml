@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:wsnt="http://docs.oasis-open.org/wsn/b-2">
+    <soap:Header/>
+    <soap:Body>
+        <wsnt:Notify>
+            <wsnt:NotificationMessage>
+                <wsnt:Topic/>
+                <wsnt:ProducerReference>
+                    <wsa:Address>http://www.alert-project.eu/keui</wsa:Address>
+                </wsnt:ProducerReference>
+                <wsnt:Message>
+                    <ns1:event xmlns:ns1="http://www.alert-project.eu/" xmlns:o="http://www.alert-project.eu/ontoevents-mdservice" xmlns:r="http://www.alert-project.eu/rawevents-forum" xmlns:r1="http://www.alert-project.eu/rawevents-mailinglist" xmlns:r2="http://www.alert-project.eu/rawevents-wiki" xmlns:s="http://www.alert-project.eu/strevents-kesi" xmlns:s1="http://www.alert-project.eu/strevents-keui" xmlns:sm="http://www.alert-project.eu/stardom" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.alert-project.eu/alert-root.xsd">
+                        <ns1:head>
+                            <ns1:sender>KEUI</ns1:sender>
+                            <ns1:timestamp>10003</ns1:timestamp>
+                            <ns1:sequencenumber>1</ns1:sequencenumber>
+                        </ns1:head>
+                        <ns1:payload>
+                            <ns1:meta>
+                                <ns1:startTime>10010</ns1:startTime>
+                                <ns1:endTime>10020</ns1:endTime>
+                                <ns1:eventName>ALERT.KEUI.ArticleAdded.Annotated</ns1:eventName>
+                                <ns1:eventId>1333449365843</ns1:eventId>
+                                <ns1:eventType>reply</ns1:eventType>
+                            </ns1:meta>
+                            <ns1:eventData>
+                                <r2:wikiSensor>
+                                    <r2:source>KDEBase</r2:source>
+                                    <r2:url>en.wikipedia.org/MainPage</r2:url>
+                                    <r2:id>2342342</r2:id>
+                                    <r2:title>Main Page</r2:title>
+                                    <r2:rawText>Wiki page raw text</r2:rawText>
+                                    <r2:user>
+                                        <r2:id>riemer@fzi.de</r2:id>
+                                        <r2:name>Dominik</r2:name>
+                                        <r2:email>riemer@fzi.de</r2:email>
+                                        <r2:editCount>23</r2:editCount>
+                                    </r2:user>
+                                    <r2:comment>Edit Comments</r2:comment>
+                                    <r2:isMinor>true</r2:isMinor>
+                                </r2:wikiSensor>
+                                <o:mdservice>
+                                    <o:wikiPageUri>http://www.alert-project.eu/ontologies/alert.owl#WikiPage1</o:wikiPageUri>
+                                    <o:userUri>http://www.alert-project.eu/ontologies/alert_scm.owl#Person1</o:userUri>
+                                </o:mdservice>
+								<s1:keui>
+									<s1:itemId>7805</s1:itemId>
+									<s1:rawTextAnnotated><![CDATA[good. Now, where is a good place to start? Maybe to <concept id="http://ailab.ijs.si/alert/resource/r17957">load</concept> <concept id="http://ailab.ijs.si/alert/resource/r8553">up</concept> the amaroK <concept id="http://ailab.ijs.si/alert/resource/r18057">source code</concept> in kdevelop, and start experimenting by touching it here and there?]]></s1:rawTextAnnotated>
+                                    <s1:rawTextConcepts>
+										<s1:concept><s1:uri>http://ailab.ijs.si/alert/resource/r17957</s1:uri><s1:weight>1</s1:weight></s1:concept>
+										<s1:concept><s1:uri>http://ailab.ijs.si/alert/resource/r8553</s1:uri><s1:weight>1</s1:weight></s1:concept>
+										<s1:concept><s1:uri>http://ailab.ijs.si/alert/resource/r18057</s1:uri><s1:weight>1</s1:weight></s1:concept>
+									</s1:rawTextConcepts>
+                                    <s1:titleAnnotated><![CDATA[<concept id="KDE/development">Development</concept> :: Re:amaroK and <concept id="http://ailab.ijs.si/alert/resource/r17792">Qt4</concept>]]></s1:titleAnnotated>
+                                    <s1:titleConcepts>
+                                        <s1:concept><s1:uri>KDE/development</s1:uri><s1:weight>1</s1:weight></s1:concept>
+                                        <s1:concept><s1:uri>http://ailab.ijs.si/alert/resource/r17792</s1:uri><s1:weight>1</s1:weight></s1:concept>
+                                    </s1:titleConcepts>
+								</s1:keui>
+                            </ns1:eventData>
+                        </ns1:payload>
+                    </ns1:event>
+                </wsnt:Message>
+            </wsnt:NotificationMessage>
+        </wsnt:Notify>
+    </soap:Body>
+</soap:Envelope>

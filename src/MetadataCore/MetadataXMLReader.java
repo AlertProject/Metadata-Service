@@ -163,12 +163,19 @@ public class MetadataXMLReader {
                 MetadataGlobal.BackupProcedure(dDoc);
                 NewForumPostAnnotation(dDoc);
             }
-            if(sEventName.equals(MetadataConstants.c_ET_ALERT_KEUI_WikiPostNew_Annotated)) //if event type is new wiki post annotation
+            if(sEventName.equals(MetadataConstants.c_ET_ALERT_KEUI_ArticleAdded_Annotated)) //if event type is wiki article added annotation
             {
-                System.out.println("Event type: New wiki post annotation event");
-                MetadataConstants.sOutputFolderName = MetadataConstants.c_ET_ALERT_KEUI_WikiPostNew_Annotated;
+                System.out.println("Event type: New wiki page annotation event");
+                MetadataConstants.sOutputFolderName = MetadataConstants.c_ET_ALERT_KEUI_ArticleAdded_Annotated;
                 MetadataGlobal.BackupProcedure(dDoc);
-                //NewWikiPostAnnotation(dDoc);
+                NewUpdateWikiPageAnnotation(dDoc, true);
+            }
+            if(sEventName.equals(MetadataConstants.c_ET_ALERT_KEUI_ArticleModified_Annotated)) //if event type is wiki article added annotation
+            {
+                System.out.println("Event type: Modified wiki page annotation event");
+                MetadataConstants.sOutputFolderName = MetadataConstants.c_ET_ALERT_KEUI_ArticleModified_Annotated;
+                MetadataGlobal.BackupProcedure(dDoc);
+                NewUpdateWikiPageAnnotation(dDoc, false);
             }
             if(sEventName.equals(MetadataConstants.c_ET_ALERT_KEUI_MailNew_Annotated)) //if event type is new mail annotation
             {
@@ -2643,6 +2650,129 @@ public class MetadataXMLReader {
             }
 
             MetadataModel.SaveObjectNewAnnotationData(MetadataConstants.c_ET_ALERT_Metadata_MailNew_Updated, dDoc, oAnnotation);
+            
+            return oAnnotation;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    /**
+     * @summary Method for reading new forum or wiki post annotation event from XML.
+     * @startRealisation  Dejan Milosavljevic 17.01.2012.
+     * @finalModification Dejan Milosavljevic 18.04.2012.
+     * @param dDoc - input XML document to read
+     * @return - returns AnnotationData object
+     */
+    public static AnnotationData NewUpdateWikiPageAnnotation(Document dDoc, boolean bNew)
+    {
+        try
+        {
+            //String sEventId = GetEventId(dDoc);
+            AnnotationData oAnnotation = MetadataObjectFactory.CreateNewAnnotation();
+            
+            NodeList nlMdservice = dDoc.getElementsByTagName("o:" + MetadataConstants.c_XMLE_mdservice);
+            if (nlMdservice != null && nlMdservice.getLength() > 0)
+            {
+                Element eMdservice = (Element) nlMdservice.item(0);
+                String sTag = "o:" + MetadataConstants.c_XMLE_wikiPage + MetadataConstants.c_XMLE_Uri;
+                
+                //URI
+                oAnnotation.m_sObjectURI = GetValue(eMdservice, sTag);
+            }
+            
+            NodeList nlAnnotation = dDoc.getElementsByTagName("s1:" + MetadataConstants.c_XMLE_keui);   //getting node for tag annotation
+
+            if (nlAnnotation != null && nlAnnotation.getLength() > 0)
+            {
+                Element eAnnotation = (Element) nlAnnotation.item(0);
+            
+                String sItemId = GetValue(eAnnotation, "s1:" + MetadataConstants.c_XMLE_itemId);     //Dejan Milosavljevic 18.04.2012.
+                if (!sItemId.isEmpty()) oAnnotation.iItemId = Integer.parseInt(sItemId);             //Dejan Milosavljevic 18.04.2012.
+                                
+                NodeList nlTitleAnnotated = eAnnotation.getElementsByTagName("s1:" + MetadataConstants.c_XMLE_titleAnnotated);
+                NodeList nlRawTextAnnotated = eAnnotation.getElementsByTagName("s1:" + MetadataConstants.c_XMLE_rawTextAnnotated);
+                if (nlTitleAnnotated != null && nlRawTextAnnotated != null)
+                {
+                    int iTitleLength = nlTitleAnnotated.getLength();
+                    int iRawTextLength = nlRawTextAnnotated.getLength();
+                    oAnnotation.oAnnotated = new MetadataGlobal.AnnotationProp[iTitleLength + iRawTextLength];
+                    if (iTitleLength == 1)
+                    {
+                        Element eTitleAnnotated = (Element)nlTitleAnnotated.item(0);
+                        oAnnotation.oAnnotated[0] = new MetadataGlobal.AnnotationProp();
+                        oAnnotation.oAnnotated[0].sName = MetadataConstants.c_XMLE_titleAnnotated;
+                        oAnnotation.oAnnotated[0].SetAnnotationText(eTitleAnnotated);
+                        
+                        NodeList nlTConcepts = eAnnotation.getElementsByTagName("s1:" + MetadataConstants.c_XMLE_titleConcepts);
+                        if (nlTConcepts != null && nlTConcepts.getLength() > 0)
+                        {
+                            Element eTitleConcepts = (Element) nlTConcepts.item(0);
+                            NodeList nlTitleConcepts = eTitleConcepts.getElementsByTagName("s1:" + MetadataConstants.c_XMLE_concept);
+                            if (nlTitleConcepts != null)
+                            {
+                                int iTitleCLength = nlTitleConcepts.getLength();
+                                oAnnotation.oAnnotated[0].oConcepts = new MetadataGlobal.ConceptProp[iTitleCLength];
+                                for (int i = 0; i < iTitleCLength; i++)
+                                {
+                                    Element eTConcept = (Element)nlTitleConcepts.item(i);
+                                    oAnnotation.oAnnotated[0].oConcepts[i] = new MetadataGlobal.ConceptProp();
+                                    oAnnotation.oAnnotated[0].oConcepts[i].sName = MetadataConstants.c_XMLE_titleConcepts;
+                                    oAnnotation.oAnnotated[0].oConcepts[i].sUri = GetValue(eTConcept, "s1:" + MetadataConstants.c_XMLE_uri);
+                                    oAnnotation.oAnnotated[0].oConcepts[i].sWeight = GetValue(eTConcept, "s1:" + MetadataConstants.c_XMLE_weight);
+                                }
+                            }
+                        }
+                    }
+                    if (iRawTextLength == 1)
+                    {
+                        Element eRawTextAnnotated = (Element)nlRawTextAnnotated.item(0);
+                        oAnnotation.oAnnotated[iTitleLength] = new MetadataGlobal.AnnotationProp();
+                        oAnnotation.oAnnotated[iTitleLength].sName = MetadataConstants.c_XMLE_rawTextAnnotated;
+                        oAnnotation.oAnnotated[iTitleLength].SetAnnotationText(eRawTextAnnotated);
+                        
+                        NodeList nlRTConcepts = eAnnotation.getElementsByTagName("s1:" + MetadataConstants.c_XMLE_rawTextConcepts);
+                        if (nlRTConcepts != null && nlRTConcepts.getLength() > 0)
+                        {
+                            Element eRawTextConcepts = (Element) nlRTConcepts.item(0);
+                            NodeList nlRawTextConcepts = eRawTextConcepts.getElementsByTagName("s1:" + MetadataConstants.c_XMLE_concept);
+                            if (nlRawTextConcepts != null)
+                            {
+                                int iRawTextCLength = nlRawTextConcepts.getLength();
+                                oAnnotation.oAnnotated[iTitleLength].oConcepts = new MetadataGlobal.ConceptProp[iRawTextCLength];
+                                for (int i = 0; i < iRawTextCLength; i++)
+                                {
+                                    Element eBConcept = (Element)nlRawTextConcepts.item(i);
+                                    oAnnotation.oAnnotated[iTitleLength].oConcepts[i] = new MetadataGlobal.ConceptProp();
+                                    oAnnotation.oAnnotated[iTitleLength].oConcepts[i].sName = MetadataConstants.c_XMLE_rawTextConcepts;
+                                    oAnnotation.oAnnotated[iTitleLength].oConcepts[i].sUri = GetValue(eBConcept, "s1:" + MetadataConstants.c_XMLE_uri);
+                                    oAnnotation.oAnnotated[iTitleLength].oConcepts[i].sWeight = GetValue(eBConcept, "s1:" + MetadataConstants.c_XMLE_weight);
+                                }
+                            }
+                        }
+                    }
+                    oAnnotation.SetKeywords();
+                }
+                
+                NodeList nlReferences = eAnnotation.getElementsByTagName("s1:" + MetadataConstants.c_XMLE_referenceUri);
+                if (nlReferences != null)
+                {
+                    int iLength = nlReferences.getLength();
+                    for (int i = 0; i < iLength; i++)
+                    {
+                        Element eReferenceUri = (Element)nlReferences.item(i);
+                        oAnnotation.oReferences.add(eReferenceUri.getFirstChild().getNodeValue());
+                    }
+                }
+            }
+
+            if (bNew)
+                MetadataModel.SaveObjectNewAnnotationData(MetadataConstants.c_ET_ALERT_Metadata_ArticleAdded_Updated, dDoc, oAnnotation);
+            else
+                MetadataModel.SaveObjectNewAnnotationData(MetadataConstants.c_ET_ALERT_Metadata_ArticleModified_Updated, dDoc, oAnnotation);
             
             return oAnnotation;
         }
