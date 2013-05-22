@@ -2352,7 +2352,8 @@ public class MetadataRDFConverter {
                     + "?commitUri <" + MetadataConstants.c_NS_Alert_Scm + MetadataConstants.c_OWLObjectProperty_HasMethods + "> ?methodUri . "
                     + "?methodUri <" + MetadataConstants.c_NS_Alert + MetadataConstants.c_OWLObjectProperty_HasReferenceTo + "> ?issueUri . "
                     + "?issueUri a <" + MetadataConstants.c_NS_Alert_Its + MetadataConstants.c_OWLClass_Bug + "> . "
-                    + "?issueUri <" + MetadataConstants.c_NS_Alert + MetadataConstants.c_OWLDataProperty_ID + "> ?issueId }";
+                    + "?issueUri <" + MetadataConstants.c_NS_Alert + MetadataConstants.c_OWLDataProperty_ID + "> ?issueId }"
+                    + " ORDER BY DESC(?issueId) LIMIT 100";
                             
             ResultSet rsIssue = QueryExecutionFactory.create(sQuery, oModel).execSelect();
             while (rsIssue.hasNext())
